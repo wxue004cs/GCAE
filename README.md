@@ -2,8 +2,7 @@
 
 ```
 @inproceedings{DBLP:conf/acl/LiX18,
-  author    = {Tao Li and
-               Wei Xue},
+  author    = {Wei Xue and Tao Li},
   title     = {Aspect Based Sentiment Analysis with Gated Convolutional Networks},
   booktitle = {Proceedings of the 56th Annual Meeting of the Association for Computational
                Linguistics, {ACL} 2018, Melbourne, Australia, July 15-20, 2018, Volume
