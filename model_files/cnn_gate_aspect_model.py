@@ -25,7 +25,7 @@ class CNN_Gate_Aspect_Text(nn.Module):
         self.convs1 = nn.ModuleList([nn.Conv1d(D, Co, K) for K in Ks])
         self.convs2 = nn.ModuleList([nn.Conv1d(D, Co, K) for K in Ks])
 
-        self.fc1 = nn.Linear(2*len(Ks)*Co, C)
+        self.fc1 = nn.Linear(len(Ks)*Co, C)
         self.fc_aspect = nn.Linear(args.aspect_embed_dim, Co)
 
     def forward(self, feature, aspect):
@@ -43,5 +43,4 @@ class CNN_Gate_Aspect_Text(nn.Module):
 
         x0 = torch.cat(x0, 1)
         logit = self.fc1(x0)  # (N,C)
-        return logit
-
+        return logit, x, y
