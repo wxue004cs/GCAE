@@ -31,4 +31,9 @@ python -m run -lr 5e-3 -batch-size 32  -verbose 1  -model CNN_Gate_Aspect  -embe
 
 python -m run -lr 5e-3 -batch-size 32  -verbose 1  -model CNN_Gate_Aspect  -embed_file glove  -r_l l -year 14 -epochs 5 -atsa
 
+# Installation:
+1. Python (works on python 3.6)
+2. [PyTorch](https://pytorch.org/previous-versions) - this is not in the requirements file as you get different versions dependeing on what Cuda you have installed for GPU or if you are using CPU only (works on pytorch 0.3). 
+3. `pip install -r requirements.txt`
+4. `python -m nltk.downloader perluniprops nonbreaking_prefixes`
 
