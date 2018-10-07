@@ -19,16 +19,23 @@ def load_w2v_embedding(word_list, uniform_scale, dimension_size):
 
 def load_glove_embedding(word_list, uniform_scale, dimension_size):
     glove_words = []
-    with open('../../../code/embedding/glove_words.txt', 'r') as fopen:
+    glove_file = '../../Glove Vectors/glove.840B.300d.txt'
+    with open(glove_file, 'r') as fopen:
         for line in fopen:
-            glove_words.append(line.strip())
+            line_split = line.split()
+            word = line_split[:-300]
+            word = ' '.join(word)
+            glove_words.append(word)
     word2offset = {w: i for i, w in enumerate(glove_words)}
     word_vectors = []
     for word in word_list:
         if word in word2offset:
-            line = linecache.getline('../../../code/embedding/glove.840B.300d.txt', word2offset[word]+1)
-            assert(word == line[:line.find(' ')].strip())
-            word_vectors.append(np.fromstring(line[line.find(' '):].strip(), sep=' ', dtype=np.float32))
+            line = linecache.getline(glove_file, word2offset[word]+1)
+            line_split = line.split()
+            line_word = line_split[:-300]
+            line_word = ' '.join(line_word)
+            assert(word == line_word)
+            word_vectors.append(np.array(line_split[-300:], dtype=np.float32))
         elif word == '<pad>':
             word_vectors.append(np.zeros(dimension_size, dtype=np.float32))
         else:
